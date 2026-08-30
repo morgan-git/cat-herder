@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfyglm4vdabm"]
+
+[ext_resource type="Script" uid="uid://cvuw5tou4maru" path="res://player.gd" id="1_daojl"]
+[ext_resource type="Texture2D" uid="uid://cs341dedl0teq" path="res://icon.svg" id="2_hquad"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ou2u5"]
+
+[node name="Patio" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_daojl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_hquad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_ou2u5")
