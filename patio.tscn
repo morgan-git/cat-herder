@@ -1,7 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfyglm4vdabm"]
+[gd_scene load_steps=9 format=3 uid="uid://bfyglm4vdabm"]
 
 [ext_resource type="Script" uid="uid://cvuw5tou4maru" path="res://player.gd" id="1_daojl"]
 [ext_resource type="Texture2D" uid="uid://cs341dedl0teq" path="res://icon.svg" id="2_hquad"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_daojl"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxu6m"]
+size = Vector2(44, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ou2u5"]
 size = Vector2(142.19, 144.892)
@@ -24,14 +31,26 @@ offset_right = 2115.0
 offset_bottom = 1813.0
 color = Color(0.533333, 0.588235, 0.509804, 1)
 
+[node name="Table" type="StaticBody2D" parent="Green Background"]
+position = Vector2(3404, 1003)
+
+[node name="Table Sprite" type="Sprite2D" parent="Green Background/Table"]
+position = Vector2(11.0001, 4)
+scale = Vector2(1.66033, 2.0458)
+texture = SubResource("PlaceholderTexture2D_daojl")
+
+[node name="Table Collision" type="CollisionShape2D" parent="Green Background/Table"]
+position = Vector2(12, 4.5)
+shape = SubResource("RectangleShape2D_mxu6m")
+
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_daojl")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Player Sprite" type="Sprite2D" parent="Player"]
 position = Vector2(8, 5)
 texture = ExtResource("2_hquad")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="Player Collision" type="CollisionShape2D" parent="Player"]
 position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_ou2u5")
 
