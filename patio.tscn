@@ -1,13 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfyglm4vdabm"]
+[gd_scene load_steps=17 format=3 uid="uid://bfyglm4vdabm"]
 
-[ext_resource type="Script" uid="uid://cvuw5tou4maru" path="res://player.gd" id="1_daojl"]
+[ext_resource type="Script" uid="uid://bd7bf05355eik" path="res://scripts/player.gd" id="1_43j51"]
 [ext_resource type="Texture2D" uid="uid://dok4gme608l15" path="res://assets/maeve_farm_rpg/Character/Idle.png" id="2_mxu6m"]
 [ext_resource type="Texture2D" uid="uid://cywnk4cirved8" path="res://assets/Neko Cafe Asset Pack/neko-cafe-furnitures.png" id="3_rl1s1"]
 [ext_resource type="Texture2D" uid="uid://cqjsejcy8c4gl" path="res://assets/CatRoomFree/Furnitures.png" id="4_mxu6m"]
-[ext_resource type="Script" uid="uid://cxo7sofojjnee" path="res://cat_1.gd" id="5_mxu6m"]
 [ext_resource type="Texture2D" uid="uid://cno86gvj674ad" path="res://assets/cats/black_0.png" id="5_ren2i"]
-[ext_resource type="Script" uid="uid://b1hlbpu6st5qv" path="res://cat_2.gd" id="7_43j51"]
+[ext_resource type="Script" uid="uid://c2r05vkl01un5" path="res://scripts/cat_1.gd" id="5_rupsg"]
+[ext_resource type="Script" uid="uid://7noq6o3pabb7" path="res://scripts/cat_2.gd" id="7_8kc7v"]
 [ext_resource type="Texture2D" uid="uid://bm101nnf8jflo" path="res://assets/cats/creme_1.png" id="8_rupsg"]
+[ext_resource type="Script" uid="uid://baryvtdkevjc6" path="res://scripts/cat_3.gd" id="9_rupsg"]
+[ext_resource type="Texture2D" uid="uid://bwrgmmib8ffle" path="res://assets/cats/grey_0.png" id="10_8kc7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ou2u5"]
 size = Vector2(109, 155)
@@ -40,7 +42,7 @@ color = Color(0.533333, 0.588235, 0.509804, 1)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(-398.19, 122.793)
-script = ExtResource("1_daojl")
+script = ExtResource("1_43j51")
 yarn_ball_path = NodePath("../YarnBall")
 
 [node name="Player Sprite" type="Sprite2D" parent="Player"]
@@ -96,6 +98,9 @@ region_rect = Rect2(80, 80, 16, 18)
 position = Vector2(1, 5)
 shape = SubResource("RectangleShape2D_mxu6m")
 
+[node name="Marker2D" type="Marker2D" parent="Table"]
+position = Vector2(-0.165146, -33.3671)
+
 [node name="YarnBall" type="Node2D" parent="."]
 position = Vector2(402.067, 147.385)
 
@@ -107,7 +112,7 @@ region_enabled = true
 region_rect = Rect2(64.104, 450.624, 26.896, 25)
 
 [node name="Cat1" type="CharacterBody2D" parent="."]
-script = ExtResource("5_mxu6m")
+script = ExtResource("5_rupsg")
 yarn_ball_path = NodePath("../YarnBall")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cat1"]
@@ -126,7 +131,7 @@ autostart = true
 
 [node name="Cat2" type="CharacterBody2D" parent="."]
 position = Vector2(336.565, -48.5664)
-script = ExtResource("7_43j51")
+script = ExtResource("7_8kc7v")
 yarn_ball_path = NodePath("../YarnBall")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cat2"]
@@ -143,5 +148,25 @@ shape = SubResource("RectangleShape2D_43j51")
 wait_time = 2.0
 autostart = true
 
+[node name="Cat3" type="CharacterBody2D" parent="."]
+position = Vector2(-140.568, 272.501)
+script = ExtResource("9_rupsg")
+table_marker_path = NodePath("../Table/Marker2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cat3"]
+scale = Vector2(4, 4)
+texture = ExtResource("10_8kc7v")
+region_enabled = true
+region_rect = Rect2(130, 259, 27, 23)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat3"]
+position = Vector2(-3.5, -4.5)
+shape = SubResource("RectangleShape2D_43j51")
+
+[node name="Timer" type="Timer" parent="Cat3"]
+wait_time = 2.0
+autostart = true
+
 [connection signal="timeout" from="Cat1/Timer" to="Cat1" method="_on_timer_timeout"]
 [connection signal="timeout" from="Cat2/Timer" to="Cat2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Cat3/Timer" to="Cat3" method="_on_timer_timeout"]
