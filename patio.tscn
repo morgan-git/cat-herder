@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfyglm4vdabm"]
+[gd_scene load_steps=15 format=3 uid="uid://bfyglm4vdabm"]
 
 [ext_resource type="Script" uid="uid://cvuw5tou4maru" path="res://player.gd" id="1_daojl"]
 [ext_resource type="Texture2D" uid="uid://dok4gme608l15" path="res://assets/maeve_farm_rpg/Character/Idle.png" id="2_mxu6m"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cqjsejcy8c4gl" path="res://assets/CatRoomFree/Furnitures.png" id="4_mxu6m"]
 [ext_resource type="Script" uid="uid://cxo7sofojjnee" path="res://cat_1.gd" id="5_mxu6m"]
 [ext_resource type="Texture2D" uid="uid://cno86gvj674ad" path="res://assets/cats/black_0.png" id="5_ren2i"]
+[ext_resource type="Script" uid="uid://b1hlbpu6st5qv" path="res://cat_2.gd" id="7_43j51"]
+[ext_resource type="Texture2D" uid="uid://bm101nnf8jflo" path="res://assets/cats/creme_1.png" id="8_rupsg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ou2u5"]
 size = Vector2(109, 155)
@@ -122,4 +124,24 @@ shape = SubResource("RectangleShape2D_43j51")
 wait_time = 2.0
 autostart = true
 
+[node name="Cat2" type="CharacterBody2D" parent="."]
+position = Vector2(336.565, -48.5664)
+script = ExtResource("7_43j51")
+yarn_ball_path = NodePath("../YarnBall")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cat2"]
+scale = Vector2(4, 4)
+texture = ExtResource("8_rupsg")
+region_enabled = true
+region_rect = Rect2(131, 133, 27, 21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat2"]
+position = Vector2(-3.5, -4.5)
+shape = SubResource("RectangleShape2D_43j51")
+
+[node name="Timer" type="Timer" parent="Cat2"]
+wait_time = 2.0
+autostart = true
+
 [connection signal="timeout" from="Cat1/Timer" to="Cat1" method="_on_timer_timeout"]
+[connection signal="timeout" from="Cat2/Timer" to="Cat2" method="_on_timer_timeout"]
