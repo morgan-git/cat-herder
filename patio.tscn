@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://bfyglm4vdabm"]
 
 [ext_resource type="Script" uid="uid://bd7bf05355eik" path="res://scripts/player.gd" id="1_43j51"]
-[ext_resource type="Script" uid="uid://cdv6il4b32noh" path="res://scripts/patio.gd" id="1_wo8bo"]
+[ext_resource type="Script" uid="uid://c63qkccts8yr5" path="res://scripts/patio.gd" id="1_wo8bo"]
 [ext_resource type="Texture2D" uid="uid://dok4gme608l15" path="res://assets/maeve_farm_rpg/Character/Idle.png" id="2_mxu6m"]
 [ext_resource type="Texture2D" uid="uid://cywnk4cirved8" path="res://assets/Neko Cafe Asset Pack/neko-cafe-furnitures.png" id="3_rl1s1"]
 [ext_resource type="Texture2D" uid="uid://cqjsejcy8c4gl" path="res://assets/CatRoomFree/Furnitures.png" id="4_mxu6m"]
@@ -40,7 +40,6 @@ bg_color = Color(0.980392, 0.352941, 0.4, 1)
 bg_color = Color(0.980392, 0.352941, 0.4, 1)
 
 [node name="Patio" type="Node2D"]
-process_mode = 3
 script = ExtResource("1_wo8bo")
 game_timer_path = NodePath("Node2D/Timer")
 countdown_label_path = NodePath("Node2D/CountdownLabel")
