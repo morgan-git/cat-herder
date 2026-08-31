@@ -59,6 +59,7 @@ offset_bottom = 1488.0
 color = Color(0.533333, 0.588235, 0.509804, 1)
 
 [node name="Player" type="CharacterBody2D" parent="."]
+process_mode = 1
 position = Vector2(-398.19, 122.793)
 script = ExtResource("1_43j51")
 yarn_ball_path = NodePath("../YarnBall")
@@ -130,6 +131,7 @@ region_enabled = true
 region_rect = Rect2(64.104, 450.624, 26.896, 25)
 
 [node name="Cat1" type="CharacterBody2D" parent="."]
+process_mode = 1
 script = ExtResource("5_rupsg")
 yarn_ball_path = NodePath("../YarnBall")
 happiness_bar_path = NodePath("ProgressBar")
@@ -156,6 +158,7 @@ offset_bottom = -44.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_8kc7v")
 
 [node name="Cat2" type="CharacterBody2D" parent="."]
+process_mode = 1
 position = Vector2(336.565, -48.5664)
 script = ExtResource("7_8kc7v")
 yarn_ball_path = NodePath("../YarnBall")
@@ -183,6 +186,7 @@ offset_bottom = -33.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_wo8bo")
 
 [node name="Cat3" type="CharacterBody2D" parent="."]
+process_mode = 1
 position = Vector2(-140.568, 272.501)
 script = ExtResource("9_rupsg")
 table_marker_path = NodePath("../Table/Marker2D")
