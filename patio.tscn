@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfyglm4vdabm"]
+[gd_scene load_steps=21 format=3 uid="uid://bfyglm4vdabm"]
 
 [ext_resource type="Script" uid="uid://bd7bf05355eik" path="res://scripts/player.gd" id="1_43j51"]
+[ext_resource type="Script" uid="uid://c63qkccts8yr5" path="res://scripts/patio.gd" id="1_wo8bo"]
 [ext_resource type="Texture2D" uid="uid://dok4gme608l15" path="res://assets/maeve_farm_rpg/Character/Idle.png" id="2_mxu6m"]
 [ext_resource type="Texture2D" uid="uid://cywnk4cirved8" path="res://assets/Neko Cafe Asset Pack/neko-cafe-furnitures.png" id="3_rl1s1"]
 [ext_resource type="Texture2D" uid="uid://cqjsejcy8c4gl" path="res://assets/CatRoomFree/Furnitures.png" id="4_mxu6m"]
@@ -39,14 +40,21 @@ bg_color = Color(0.980392, 0.352941, 0.4, 1)
 bg_color = Color(0.980392, 0.352941, 0.4, 1)
 
 [node name="Patio" type="Node2D"]
+script = ExtResource("1_wo8bo")
+game_timer_path = NodePath("Node2D/Timer")
+countdown_label_path = NodePath("Node2D/CountdownLabel")
+result_label_path = NodePath("Node2D2/CompletionLabel")
+cat1_path = NodePath("Cat1")
+cat2_path = NodePath("Cat2")
+cat3_path = NodePath("Cat3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Green Background" type="ColorRect" parent="."]
-offset_left = -3061.0
-offset_top = -944.0
-offset_right = 2141.0
-offset_bottom = 1731.0
+offset_left = -3039.0
+offset_top = -1187.0
+offset_right = 2163.0
+offset_bottom = 1488.0
 color = Color(0.533333, 0.588235, 0.509804, 1)
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -190,11 +198,36 @@ position = Vector2(-13.4318, -0.500671)
 shape = SubResource("RectangleShape2D_43j51")
 
 [node name="ProgressBar" type="ProgressBar" parent="Cat3"]
-offset_left = -39.4318
-offset_top = -64.5007
-offset_right = -2.43182
-offset_bottom = -37.5007
+offset_left = -36.4318
+offset_top = -66.5007
+offset_right = 0.568176
+offset_bottom = -39.5007
 theme_override_styles/fill = SubResource("StyleBoxFlat_0l0qi")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(37.3235, -293.823)
+
+[node name="CountdownLabel" type="Label" parent="Node2D"]
+offset_left = -74.3452
+offset_top = -23.1716
+offset_right = 73.6548
+offset_bottom = 28.8284
+theme_override_font_sizes/font_size = 50
+
+[node name="Timer" type="Timer" parent="Node2D"]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="CompletionLabel" type="Label" parent="Node2D2"]
+offset_left = -360.0
+offset_top = -242.0
+offset_right = 218.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 50
 
 [connection signal="timeout" from="Cat1/Timer" to="Cat1" method="_on_timer_timeout"]
 [connection signal="timeout" from="Cat2/Timer" to="Cat2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Node2D/Timer" to="." method="_on_timer_timeout"]
