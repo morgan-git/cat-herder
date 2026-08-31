@@ -151,7 +151,7 @@ autostart = true
 [node name="Cat3" type="CharacterBody2D" parent="."]
 position = Vector2(-140.568, 272.501)
 script = ExtResource("9_rupsg")
-table_path = NodePath("../Table/Marker2D")
+table_marker_path = NodePath("../Table/Marker2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cat3"]
 scale = Vector2(4, 4)
