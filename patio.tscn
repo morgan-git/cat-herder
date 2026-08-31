@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfyglm4vdabm"]
+[gd_scene load_steps=21 format=3 uid="uid://bfyglm4vdabm"]
 
 [ext_resource type="Script" uid="uid://bd7bf05355eik" path="res://scripts/player.gd" id="1_43j51"]
+[ext_resource type="Script" uid="uid://cdv6il4b32noh" path="res://scripts/patio.gd" id="1_wo8bo"]
 [ext_resource type="Texture2D" uid="uid://dok4gme608l15" path="res://assets/maeve_farm_rpg/Character/Idle.png" id="2_mxu6m"]
 [ext_resource type="Texture2D" uid="uid://cywnk4cirved8" path="res://assets/Neko Cafe Asset Pack/neko-cafe-furnitures.png" id="3_rl1s1"]
 [ext_resource type="Texture2D" uid="uid://cqjsejcy8c4gl" path="res://assets/CatRoomFree/Furnitures.png" id="4_mxu6m"]
@@ -27,17 +28,34 @@ size = Vector2(140, 1361)
 size = Vector2(54, 61)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43j51"]
-size = Vector2(51, 73)
+size = Vector2(61, 73)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kc7v"]
+bg_color = Color(0.979554, 0.354677, 0.401051, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo8bo"]
+bg_color = Color(0.980392, 0.352941, 0.4, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l0qi"]
+bg_color = Color(0.980392, 0.352941, 0.4, 1)
 
 [node name="Patio" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_wo8bo")
+game_timer_path = NodePath("Node2D/Timer")
+countdown_label_path = NodePath("Node2D/CountdownLabel")
+result_label_path = NodePath("Node2D2/CompletionLabel")
+cat1_path = NodePath("Cat1")
+cat2_path = NodePath("Cat2")
+cat3_path = NodePath("Cat3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Green Background" type="ColorRect" parent="."]
-offset_left = -3061.0
-offset_top = -944.0
-offset_right = 2141.0
-offset_bottom = 1731.0
+offset_left = -3039.0
+offset_top = -1187.0
+offset_right = 2163.0
+offset_bottom = 1488.0
 color = Color(0.533333, 0.588235, 0.509804, 1)
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -99,7 +117,7 @@ position = Vector2(1, 5)
 shape = SubResource("RectangleShape2D_mxu6m")
 
 [node name="Marker2D" type="Marker2D" parent="Table"]
-position = Vector2(-0.165146, -33.3671)
+position = Vector2(1.83485, -37.3671)
 
 [node name="YarnBall" type="Node2D" parent="."]
 position = Vector2(402.067, 147.385)
@@ -114,6 +132,7 @@ region_rect = Rect2(64.104, 450.624, 26.896, 25)
 [node name="Cat1" type="CharacterBody2D" parent="."]
 script = ExtResource("5_rupsg")
 yarn_ball_path = NodePath("../YarnBall")
+happiness_bar_path = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cat1"]
 scale = Vector2(4, 4)
@@ -129,10 +148,18 @@ shape = SubResource("RectangleShape2D_43j51")
 wait_time = 2.0
 autostart = true
 
+[node name="ProgressBar" type="ProgressBar" parent="Cat1"]
+offset_left = -21.0
+offset_top = -71.0
+offset_right = 14.0
+offset_bottom = -44.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8kc7v")
+
 [node name="Cat2" type="CharacterBody2D" parent="."]
 position = Vector2(336.565, -48.5664)
 script = ExtResource("7_8kc7v")
 yarn_ball_path = NodePath("../YarnBall")
+happiness_bar_path = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cat2"]
 scale = Vector2(4, 4)
@@ -141,17 +168,25 @@ region_enabled = true
 region_rect = Rect2(131, 133, 27, 21)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cat2"]
-position = Vector2(-3.5, -4.5)
+position = Vector2(-10.2824, -4.5)
 shape = SubResource("RectangleShape2D_43j51")
 
 [node name="Timer" type="Timer" parent="Cat2"]
 wait_time = 2.0
 autostart = true
 
+[node name="ProgressBar" type="ProgressBar" parent="Cat2"]
+offset_left = -36.0
+offset_top = -60.0
+offset_right = 2.0
+offset_bottom = -33.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_wo8bo")
+
 [node name="Cat3" type="CharacterBody2D" parent="."]
 position = Vector2(-140.568, 272.501)
 script = ExtResource("9_rupsg")
 table_marker_path = NodePath("../Table/Marker2D")
+happiness_bar_path = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cat3"]
 scale = Vector2(4, 4)
@@ -160,13 +195,40 @@ region_enabled = true
 region_rect = Rect2(130, 259, 27, 23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cat3"]
-position = Vector2(-3.5, -4.5)
+position = Vector2(-13.4318, -0.500671)
 shape = SubResource("RectangleShape2D_43j51")
 
-[node name="Timer" type="Timer" parent="Cat3"]
-wait_time = 2.0
+[node name="ProgressBar" type="ProgressBar" parent="Cat3"]
+offset_left = -36.4318
+offset_top = -66.5007
+offset_right = 0.568176
+offset_bottom = -39.5007
+theme_override_styles/fill = SubResource("StyleBoxFlat_0l0qi")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(37.3235, -293.823)
+
+[node name="CountdownLabel" type="Label" parent="Node2D"]
+offset_left = -74.3452
+offset_top = -23.1716
+offset_right = 73.6548
+offset_bottom = 28.8284
+theme_override_font_sizes/font_size = 50
+
+[node name="Timer" type="Timer" parent="Node2D"]
+wait_time = 30.0
+one_shot = true
 autostart = true
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="CompletionLabel" type="Label" parent="Node2D2"]
+offset_left = -360.0
+offset_top = -242.0
+offset_right = 218.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 50
 
 [connection signal="timeout" from="Cat1/Timer" to="Cat1" method="_on_timer_timeout"]
 [connection signal="timeout" from="Cat2/Timer" to="Cat2" method="_on_timer_timeout"]
-[connection signal="timeout" from="Cat3/Timer" to="Cat3" method="_on_timer_timeout"]
+[connection signal="timeout" from="Node2D/Timer" to="." method="_on_timer_timeout"]
