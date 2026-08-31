@@ -1,10 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfyglm4vdabm"]
+[gd_scene load_steps=15 format=3 uid="uid://bfyglm4vdabm"]
 
 [ext_resource type="Script" uid="uid://cvuw5tou4maru" path="res://player.gd" id="1_daojl"]
-[ext_resource type="Texture2D" uid="uid://cs341dedl0teq" path="res://icon.svg" id="2_hquad"]
+[ext_resource type="Texture2D" uid="uid://dok4gme608l15" path="res://assets/maeve_farm_rpg/Character/Idle.png" id="2_mxu6m"]
+[ext_resource type="Texture2D" uid="uid://cywnk4cirved8" path="res://assets/Neko Cafe Asset Pack/neko-cafe-furnitures.png" id="3_rl1s1"]
+[ext_resource type="Texture2D" uid="uid://cqjsejcy8c4gl" path="res://assets/CatRoomFree/Furnitures.png" id="4_mxu6m"]
+[ext_resource type="Script" uid="uid://cxo7sofojjnee" path="res://cat_1.gd" id="5_mxu6m"]
+[ext_resource type="Texture2D" uid="uid://cno86gvj674ad" path="res://assets/cats/black_0.png" id="5_ren2i"]
+[ext_resource type="Script" uid="uid://b1hlbpu6st5qv" path="res://cat_2.gd" id="7_43j51"]
+[ext_resource type="Texture2D" uid="uid://bm101nnf8jflo" path="res://assets/cats/creme_1.png" id="8_rupsg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ou2u5"]
-size = Vector2(142.19, 144.892)
+size = Vector2(109, 155)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_daojl"]
 size = Vector2(2914, 36)
@@ -15,25 +21,21 @@ size = Vector2(2898, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rl1s1"]
 size = Vector2(140, 1361)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_daojl"]
-resource_local_to_scene = true
-size = Vector2(25, 25)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxu6m"]
-size = Vector2(34, 41)
+size = Vector2(54, 61)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hquad"]
-size = Vector2(12, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43j51"]
+size = Vector2(51, 73)
 
 [node name="Patio" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Green Background" type="ColorRect" parent="."]
-offset_left = -3087.0
-offset_top = -964.0
-offset_right = 2115.0
-offset_bottom = 1711.0
+offset_left = -3061.0
+offset_top = -944.0
+offset_right = 2141.0
+offset_bottom = 1731.0
 color = Color(0.533333, 0.588235, 0.509804, 1)
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -43,10 +45,13 @@ yarn_ball_path = NodePath("../YarnBall")
 
 [node name="Player Sprite" type="Sprite2D" parent="Player"]
 position = Vector2(8, 5)
-texture = ExtResource("2_hquad")
+scale = Vector2(8, 8)
+texture = ExtResource("2_mxu6m")
+region_enabled = true
+region_rect = Rect2(39, 69, 20, 26)
 
 [node name="Player Collision" type="CollisionShape2D" parent="Player"]
-position = Vector2(-2, 2)
+position = Vector2(8.68964, -7.29346)
 shape = SubResource("RectangleShape2D_ou2u5")
 
 [node name="Top" type="StaticBody2D" parent="."]
@@ -78,19 +83,65 @@ shape = SubResource("RectangleShape2D_rl1s1")
 debug_color = Color(0.999701, 0, 0.10422, 0.42)
 
 [node name="Table" type="StaticBody2D" parent="."]
-position = Vector2(317, 141)
+position = Vector2(217, 95)
 
 [node name="Table Sprite" type="Sprite2D" parent="Table"]
-position = Vector2(52, 80)
-scale = Vector2(1.66033, 2.0458)
-texture = SubResource("PlaceholderTexture2D_daojl")
+position = Vector2(3, 6)
+scale = Vector2(4, 4)
+texture = ExtResource("3_rl1s1")
+region_enabled = true
+region_rect = Rect2(80, 80, 16, 18)
 
 [node name="Table Collision" type="CollisionShape2D" parent="Table"]
-position = Vector2(59, 86)
+position = Vector2(1, 5)
 shape = SubResource("RectangleShape2D_mxu6m")
 
 [node name="YarnBall" type="Node2D" parent="."]
+position = Vector2(402.067, 147.385)
 
 [node name="Sprite2D" type="Sprite2D" parent="YarnBall"]
-position = Vector2(0, -1)
-texture = SubResource("PlaceholderTexture2D_hquad")
+position = Vector2(1.93314, 1.61534)
+scale = Vector2(1.30829, 1.28)
+texture = ExtResource("4_mxu6m")
+region_enabled = true
+region_rect = Rect2(64.104, 450.624, 26.896, 25)
+
+[node name="Cat1" type="CharacterBody2D" parent="."]
+script = ExtResource("5_mxu6m")
+yarn_ball_path = NodePath("../YarnBall")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cat1"]
+scale = Vector2(4, 4)
+texture = ExtResource("5_ren2i")
+region_enabled = true
+region_rect = Rect2(327, 38, 19, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat1"]
+position = Vector2(-3.5, -4.5)
+shape = SubResource("RectangleShape2D_43j51")
+
+[node name="Timer" type="Timer" parent="Cat1"]
+wait_time = 2.0
+autostart = true
+
+[node name="Cat2" type="CharacterBody2D" parent="."]
+position = Vector2(336.565, -48.5664)
+script = ExtResource("7_43j51")
+yarn_ball_path = NodePath("../YarnBall")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cat2"]
+scale = Vector2(4, 4)
+texture = ExtResource("8_rupsg")
+region_enabled = true
+region_rect = Rect2(131, 133, 27, 21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat2"]
+position = Vector2(-3.5, -4.5)
+shape = SubResource("RectangleShape2D_43j51")
+
+[node name="Timer" type="Timer" parent="Cat2"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Cat1/Timer" to="Cat1" method="_on_timer_timeout"]
+[connection signal="timeout" from="Cat2/Timer" to="Cat2" method="_on_timer_timeout"]
