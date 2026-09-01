@@ -8,13 +8,16 @@ const HAPPINESS_RISE_RATE = 20.0
 const HAPPINESS_DECAY_RATE = 10.0
 
 @export var happiness_bar_path: NodePath
+@export var animated_sprite_path: NodePath
 var happiness_bar: ProgressBar
+var animated_sprite: AnimatedSprite2D
 var wander_target: Vector2
 var happiness: float = 50.0
 var state: State = State.WANDER
 
 func _ready() -> void:
 	happiness_bar = get_node(happiness_bar_path)
+	animated_sprite = get_node(animated_sprite_path)
 	wander_target = global_position
 
 func _physics_process(delta: float) -> void:
@@ -43,14 +46,30 @@ func _process_wander(delta: float) -> void:
 	var distance_to_wander_target = global_position.distance_to(wander_target)
 	if distance_to_wander_target < 5.0:
 		velocity = Vector2.ZERO
+		_play_animation("Idle")
 	else:
 		var direction = (wander_target - global_position).normalized()
 		velocity = direction * (SPEED * 0.5)
+		_update_facing(direction)
+		_play_animation("Walk")
 	happiness -= HAPPINESS_DECAY_RATE * delta
 
 func _process_satisfied(delta: float) -> void:
-	velocity = get_satisfied_direction() * SPEED
+	var direction = get_satisfied_direction()
+	velocity = direction * SPEED
+	_update_facing(direction)
+	_play_animation(get_satisfied_animation())
 	happiness += HAPPINESS_RISE_RATE * delta
+
+func _update_facing(direction: Vector2) -> void:
+	if direction.x > 0:
+		animated_sprite.flip_h = true
+	elif direction.x < 0:
+		animated_sprite.flip_h = false
+
+func _play_animation(anim_name: String) -> void:
+	if animated_sprite.animation != anim_name or not animated_sprite.is_playing():
+		animated_sprite.play(anim_name)
 
 func _on_timer_timeout() -> void:
 	var random_offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))
@@ -64,3 +83,7 @@ func check_satisfied() -> bool:
 # Override in each subclass: return the direction to move while satisfied.
 func get_satisfied_direction() -> Vector2:
 	return Vector2.ZERO
+
+# Override in each subclass: return the animation name to play while satisfied.
+func get_satisfied_animation() -> String:
+	return "Running"
