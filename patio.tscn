@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfyglm4vdabm"]
+[gd_scene load_steps=22 format=3 uid="uid://bfyglm4vdabm"]
 
 [ext_resource type="Script" uid="uid://bd7bf05355eik" path="res://scripts/player.gd" id="1_43j51"]
 [ext_resource type="Script" uid="uid://c63qkccts8yr5" path="res://scripts/patio.gd" id="1_wo8bo"]
 [ext_resource type="Texture2D" uid="uid://dok4gme608l15" path="res://assets/maeve_farm_rpg/Character/Idle.png" id="2_mxu6m"]
 [ext_resource type="Texture2D" uid="uid://cywnk4cirved8" path="res://assets/Neko Cafe Asset Pack/neko-cafe-furnitures.png" id="3_rl1s1"]
+[ext_resource type="Texture2D" uid="uid://bw8r1gl5hj14c" path="res://assets/Neko Cafe Asset Pack/neko-cafe-tilemap.png" id="4_0l0qi"]
 [ext_resource type="Texture2D" uid="uid://cqjsejcy8c4gl" path="res://assets/CatRoomFree/Furnitures.png" id="4_mxu6m"]
 [ext_resource type="Texture2D" uid="uid://cno86gvj674ad" path="res://assets/cats/black_0.png" id="5_ren2i"]
 [ext_resource type="Script" uid="uid://c2r05vkl01un5" path="res://scripts/cat_1.gd" id="5_rupsg"]
@@ -40,6 +41,7 @@ bg_color = Color(0.980392, 0.352941, 0.4, 1)
 bg_color = Color(0.980392, 0.352941, 0.4, 1)
 
 [node name="Patio" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_wo8bo")
 game_timer_path = NodePath("Node2D/Timer")
 countdown_label_path = NodePath("Node2D/CountdownLabel")
@@ -51,9 +53,9 @@ cat3_path = NodePath("Cat3")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Green Background" type="ColorRect" parent="."]
-offset_left = -3039.0
+offset_left = -3041.0
 offset_top = -1187.0
-offset_right = 2163.0
+offset_right = 2161.0
 offset_bottom = 1488.0
 color = Color(0.533333, 0.588235, 0.509804, 1)
 
@@ -81,12 +83,28 @@ position = Vector2(-153, -391)
 shape = SubResource("RectangleShape2D_daojl")
 debug_color = Color(0.944382, 0.198398, 0.335319, 0.42)
 
+[node name="Sprite2D" type="Sprite2D" parent="Top"]
+texture_repeat = 2
+position = Vector2(6, -362)
+scale = Vector2(862, 1)
+texture = ExtResource("4_0l0qi")
+region_enabled = true
+region_rect = Rect2(12, 11, 58, 73)
+
 [node name="Bottom" type="StaticBody2D" parent="."]
 
 [node name="Bottom Boundary" type="CollisionShape2D" parent="Bottom"]
 position = Vector2(-74, 350)
 shape = SubResource("RectangleShape2D_hquad")
 debug_color = Color(0.993134, 0.00258929, 0.237285, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bottom"]
+texture_repeat = 2
+position = Vector2(1133, 324)
+scale = Vector2(862, 1)
+texture = ExtResource("4_0l0qi")
+region_enabled = true
+region_rect = Rect2(12, 11, 58, 73)
 
 [node name="Right" type="StaticBody2D" parent="."]
 
@@ -186,7 +204,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_wo8bo")
 
 [node name="Cat3" type="CharacterBody2D" parent="."]
 process_mode = 1
-position = Vector2(-140.568, 272.501)
+position = Vector2(-177.452, 75.1061)
 script = ExtResource("9_rupsg")
 table_marker_path = NodePath("../Table/Marker2D")
 happiness_bar_path = NodePath("ProgressBar")
