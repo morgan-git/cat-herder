@@ -83,6 +83,14 @@ position = Vector2(-153, -391)
 shape = SubResource("RectangleShape2D_daojl")
 debug_color = Color(0.944382, 0.198398, 0.335319, 0.42)
 
+[node name="Sprite2D" type="Sprite2D" parent="Top"]
+texture_repeat = 2
+position = Vector2(6, -362)
+scale = Vector2(862, 1)
+texture = ExtResource("4_0l0qi")
+region_enabled = true
+region_rect = Rect2(12, 11, 58, 73)
+
 [node name="Bottom" type="StaticBody2D" parent="."]
 
 [node name="Bottom Boundary" type="CollisionShape2D" parent="Bottom"]
