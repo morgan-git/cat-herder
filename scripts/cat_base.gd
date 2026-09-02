@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _change_state(new_state: State) -> void:
+	
 	state = new_state
 
 func _process_wander(delta: float) -> void:
