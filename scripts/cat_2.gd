@@ -25,8 +25,7 @@ func _process_satisfied(delta: float) -> void:
 	else:
 		var direction = (wander_target - global_position).normalized()
 		velocity = direction * (SPEED * 0.5)
-		_update_facing(direction)
-		_play_animation("Walk")
+		_play_directional_animation(direction, "Walk")
 	happiness += HAPPINESS_RISE_RATE * delta
 
 # Not satisfied for Cat2 means the toy is close: flee at full speed,
@@ -37,6 +36,5 @@ func _process_wander(delta: float) -> void:
 	var center_direction = (patio_center - global_position).normalized()
 	var direction = (away_direction + center_direction * CENTER_BIAS).normalized()
 	velocity = direction * SPEED
-	_update_facing(direction)
-	_play_animation("Running")
+	_play_directional_animation(direction, "Running")
 	happiness -= HAPPINESS_DECAY_RATE * delta

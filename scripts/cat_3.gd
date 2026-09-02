@@ -1,6 +1,6 @@
 extends Cat
 
-const ARRIVE_THRESHOLD = 45.0
+const ARRIVE_THRESHOLD = 5.0
 
 @export var table_marker_path: NodePath
 var table_marker: Node2D

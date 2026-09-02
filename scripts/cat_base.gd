@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _change_state(new_state: State) -> void:
-	
+	print(name, " changing state to: ", State.keys()[new_state], " at time: ", Time.get_ticks_msec())
 	state = new_state
 
 func _process_wander(delta: float) -> void:
@@ -51,22 +51,32 @@ func _process_wander(delta: float) -> void:
 	else:
 		var direction = (wander_target - global_position).normalized()
 		velocity = direction * (SPEED * 0.5)
-		_update_facing(direction)
-		_play_animation("Walk")
+		_play_directional_animation(direction, "Walk")
 	happiness -= HAPPINESS_DECAY_RATE * delta
 
 func _process_satisfied(delta: float) -> void:
 	var direction = get_satisfied_direction()
 	velocity = direction * SPEED
-	_update_facing(direction)
-	_play_animation(get_satisfied_animation())
+	_play_directional_animation(direction, get_satisfied_animation())
 	happiness += HAPPINESS_RISE_RATE * delta
 
-func _update_facing(direction: Vector2) -> void:
-	if direction.x > 0:
-		animated_sprite.flip_h = true
-	elif direction.x < 0:
-		animated_sprite.flip_h = false
+# Picks a directional animation variant based on movement direction.
+# Vertical movement (Up/Down suffix) takes priority when it's the
+# stronger component, otherwise plays the plain base animation and
+# flips it left/right to match horizontal movement.
+func _play_directional_animation(direction: Vector2, base_name: String) -> void:
+	if direction == Vector2.ZERO:
+		_play_animation(base_name)
+		return
+
+	if abs(direction.y) > abs(direction.x):
+		if direction.y < 0:
+			_play_animation(base_name + "Up")
+		else:
+			_play_animation(base_name + "Down")
+	else:
+		_play_animation(base_name)
+		animated_sprite.flip_h = direction.x > 0
 
 func _play_animation(anim_name: String) -> void:
 	if animated_sprite.animation != anim_name or not animated_sprite.is_playing():
