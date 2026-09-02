@@ -15,6 +15,10 @@ run/main_scene="uid://bfyglm4vdabm"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameEffects="*res://scripts/game_effects.gd"
+
 [dotnet]
 
 project/assembly_name="Cat Herder"

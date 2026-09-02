@@ -36,6 +36,7 @@ func _physics_process(delta: float) -> void:
 
 	happiness = clamp(happiness, 0.0, 100.0)
 	happiness_bar.value = happiness
+	_check_happiness_events(delta)
 
 	move_and_slide()
 
@@ -82,9 +83,34 @@ func _play_animation(anim_name: String) -> void:
 	if animated_sprite.animation != anim_name or not animated_sprite.is_playing():
 		animated_sprite.play(anim_name)
 
+const PURR_THRESHOLD = 80.0
+const LOW_HAPPINESS_THRESHOLD = 20.0
+const LOW_HAPPINESS_ACCIDENT_TIME = 5.0
+
+var has_purred: bool = false
+var has_had_accident: bool = false
+var low_happiness_timer: float = 0.0
+
 func _on_timer_timeout() -> void:
 	var random_offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))
 	wander_target = global_position + random_offset
+
+func _check_happiness_events(delta: float) -> void:
+	if happiness >= PURR_THRESHOLD and not has_purred:
+		GameEffects.play_purr(global_position)
+		has_purred = true
+	elif happiness < PURR_THRESHOLD:
+		has_purred = false
+
+	if happiness < LOW_HAPPINESS_THRESHOLD:
+		low_happiness_timer += delta
+		if low_happiness_timer >= LOW_HAPPINESS_ACCIDENT_TIME and not has_had_accident:
+			GameEffects.play_accident(global_position)
+			GameEffects.spawn_puddle(global_position, get_parent())
+			has_had_accident = true
+	else:
+		low_happiness_timer = 0.0
+		has_had_accident = false
 
 # Override in each subclass: return true when this cat's specific
 # happy condition is met.

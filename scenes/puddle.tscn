@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://hd3jos264tim"]
+
+[ext_resource type="Texture2D" uid="uid://bk3ysleeuro0y" path="res://assets/custom/other/catpeesprite.png" id="1_sj7di"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlq6d"]
+atlas = ExtResource("1_sj7di")
+region = Rect2(0, 0, 768, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8xbh"]
+atlas = ExtResource("1_sj7di")
+region = Rect2(768, 0, 768, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i64cl"]
+atlas = ExtResource("1_sj7di")
+region = Rect2(0, 512, 768, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h42jt"]
+atlas = ExtResource("1_sj7di")
+region = Rect2(768, 512, 768, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ksxtr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlq6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8xbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i64cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h42jt")
+}],
+"loop": true,
+"name": &"appear",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Puddle" type="AnimatedSprite2D"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ksxtr")
+animation = &"appear"
