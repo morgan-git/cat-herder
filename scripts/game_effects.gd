@@ -8,6 +8,7 @@ const ACCIDENT_SOUND = preload("res://assets/sounds/catpurring.mp3")
 const PUDDLE_SCENE = preload("res://scenes/puddle.tscn")
 
 var _active_players: Array[AudioStreamPlayer2D] = []
+var active_puddle_count: int = 0
 
 func play_purr(at_position: Vector2) -> void:
 	_play_sound(PURR_SOUND, at_position)
@@ -19,6 +20,14 @@ func spawn_puddle(at_position: Vector2, parent: Node) -> void:
 	var puddle = PUDDLE_SCENE.instantiate()
 	parent.add_child(puddle)
 	puddle.global_position = at_position
+	active_puddle_count += 1
+	puddle.tree_exiting.connect(_on_puddle_removed)
+
+func _on_puddle_removed() -> void:
+	active_puddle_count -= 1
+
+func has_active_puddles() -> bool:
+	return active_puddle_count > 0
 
 # Stops and removes every currently playing sound immediately. Call this
 # when the game round ends so nothing keeps playing over a paused scene.
