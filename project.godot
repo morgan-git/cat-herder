@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cat Herder"
-run/main_scene="uid://bfyglm4vdabm"
+run/main_scene="uid://dlpachfnj5pvw"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
