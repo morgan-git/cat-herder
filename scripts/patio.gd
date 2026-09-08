@@ -36,10 +36,11 @@ func _process(delta: float) -> void:
 
 func _end_game(won: bool) -> void:
 	game_timer.stop()
+	GameEffects.stop_all_sounds()
 	if won:
-		result_label.text = "You did it! All three cats are happy."
+		result_label.text = "You did it! All cats are happy."
 	else:
-		result_label.text = "UH OH! Someone's not happy.\n Press Space to try again."
+		result_label.text = "Try again, someone's not happy."
 	result_label.visible = true
 	get_tree().paused = true
 
