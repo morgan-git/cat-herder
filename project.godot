@@ -32,6 +32,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Cat Herder"
 
+[global_group]
+
+yarn=""
+
 [input]
 
 interact={
