@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bfyglm4vdabm"]
+[gd_scene format=3 uid="uid://bfyglm4vdabm"]
 
 [ext_resource type="Script" uid="uid://c63qkccts8yr5" path="res://scripts/patio.gd" id="1_h0b11"]
 [ext_resource type="Script" uid="uid://bd7bf05355eik" path="res://scripts/player.gd" id="2_cjfhq"]
@@ -125,7 +125,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_int0l")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -148,7 +148,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_syhd7")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk",
 "speed": 5.0
 }, {
@@ -171,7 +171,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g2bwe")
 }],
-"loop": true,
+"loop": 1,
 "name": &"WalkDown",
 "speed": 5.0
 }, {
@@ -194,7 +194,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x2mcw")
 }],
-"loop": true,
+"loop": 1,
 "name": &"WalkUp",
 "speed": 5.0
 }, {
@@ -202,7 +202,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_genit")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -231,7 +231,7 @@ bg_color = Color(0.980392, 0.352941, 0.4, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l0qi"]
 bg_color = Color(0.980392, 0.352941, 0.4, 1)
 
-[node name="Patio" type="Node2D"]
+[node name="Patio" type="Node2D" unique_id=969307032]
 process_mode = 3
 script = ExtResource("1_h0b11")
 game_timer_path = NodePath("Node2D/Timer")
@@ -241,16 +241,16 @@ cat1_path = NodePath("Cat1")
 cat2_path = NodePath("Cat2")
 cat3_path = NodePath("Cat3")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=164644451]
 
-[node name="Green Background" type="ColorRect" parent="."]
+[node name="Green Background" type="ColorRect" parent="." unique_id=818464326]
 offset_left = -3041.0
 offset_top = -1187.0
 offset_right = 2161.0
 offset_bottom = 1488.0
 color = Color(0.533333, 0.588235, 0.509804, 1)
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1454238459 groups=["player"]]
 process_mode = 1
 position = Vector2(-398.19, 122.793)
 scale = Vector2(4, 4)
@@ -258,23 +258,23 @@ script = ExtResource("2_cjfhq")
 yarn_ball_path = NodePath("../YarnBall")
 animated_sprite_path = NodePath("AnimatedSprite2D")
 
-[node name="Player Collision" type="CollisionShape2D" parent="Player"]
+[node name="Player Collision" type="CollisionShape2D" parent="Player" unique_id=380697813]
 position = Vector2(1.04741, 1.05164)
 shape = SubResource("RectangleShape2D_ou2u5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1089850278]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0lxku")
 animation = &"Idle"
 
-[node name="Top" type="StaticBody2D" parent="."]
+[node name="Top" type="StaticBody2D" parent="." unique_id=1976833017]
 
-[node name="Top Boundary" type="CollisionShape2D" parent="Top"]
+[node name="Top Boundary" type="CollisionShape2D" parent="Top" unique_id=1317052112]
 position = Vector2(-153, -391)
 shape = SubResource("RectangleShape2D_daojl")
 debug_color = Color(0.944382, 0.198398, 0.335319, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="Top"]
+[node name="Sprite2D" type="Sprite2D" parent="Top" unique_id=408387556]
 texture_repeat = 2
 position = Vector2(6, -362)
 scale = Vector2(862, 1)
@@ -282,14 +282,14 @@ texture = ExtResource("5_6n1gi")
 region_enabled = true
 region_rect = Rect2(12, 11, 58, 73)
 
-[node name="Bottom" type="StaticBody2D" parent="."]
+[node name="Bottom" type="StaticBody2D" parent="." unique_id=1786153401]
 
-[node name="Bottom Boundary" type="CollisionShape2D" parent="Bottom"]
+[node name="Bottom Boundary" type="CollisionShape2D" parent="Bottom" unique_id=1091242339]
 position = Vector2(-74, 350)
 shape = SubResource("RectangleShape2D_hquad")
 debug_color = Color(0.993134, 0.00258929, 0.237285, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="Bottom"]
+[node name="Sprite2D" type="Sprite2D" parent="Bottom" unique_id=358530759]
 texture_repeat = 2
 position = Vector2(1133, 324)
 scale = Vector2(862, 1)
@@ -297,102 +297,112 @@ texture = ExtResource("5_6n1gi")
 region_enabled = true
 region_rect = Rect2(12, 11, 58, 73)
 
-[node name="Right" type="StaticBody2D" parent="."]
+[node name="Right" type="StaticBody2D" parent="." unique_id=127834313]
 
-[node name="Right Boundary" type="CollisionShape2D" parent="Right"]
+[node name="Right Boundary" type="CollisionShape2D" parent="Right" unique_id=641323302]
 position = Vector2(651, 158)
 shape = SubResource("RectangleShape2D_rl1s1")
 debug_color = Color(0.999701, 0, 0.10422, 0.42)
 
-[node name="Left" type="StaticBody2D" parent="."]
+[node name="Left" type="StaticBody2D" parent="." unique_id=819159774]
 
-[node name="Left Boundary" type="CollisionShape2D" parent="Left"]
+[node name="Left Boundary" type="CollisionShape2D" parent="Left" unique_id=841404540]
 position = Vector2(-668, 131)
 shape = SubResource("RectangleShape2D_rl1s1")
 debug_color = Color(0.999701, 0, 0.10422, 0.42)
 
-[node name="Table" type="StaticBody2D" parent="."]
+[node name="Table" type="StaticBody2D" parent="." unique_id=1611515606]
 position = Vector2(217, 95)
 
-[node name="Table Sprite" type="Sprite2D" parent="Table"]
+[node name="Table Sprite" type="Sprite2D" parent="Table" unique_id=614290038]
 position = Vector2(3, 6)
 scale = Vector2(4, 4)
 texture = ExtResource("6_4nh8q")
 region_enabled = true
 region_rect = Rect2(80, 80, 16, 18)
 
-[node name="Table Collision" type="CollisionShape2D" parent="Table"]
+[node name="Table Collision" type="CollisionShape2D" parent="Table" unique_id=1513993068]
 position = Vector2(1, 5)
 shape = SubResource("RectangleShape2D_mxu6m")
 
-[node name="Marker2D" type="Marker2D" parent="Table"]
+[node name="Marker2D" type="Marker2D" parent="Table" unique_id=1248032210]
 position = Vector2(1.83485, -37.3671)
 
-[node name="YarnBall" type="Node2D" parent="."]
+[node name="YarnBall" type="Node2D" parent="." unique_id=1285486906 groups=["yarn"]]
 position = Vector2(402.067, 147.385)
 
-[node name="Sprite2D" type="Sprite2D" parent="YarnBall"]
+[node name="Sprite2D" type="Sprite2D" parent="YarnBall" unique_id=104504762]
 position = Vector2(1.93314, 1.61534)
 scale = Vector2(1.30829, 1.28)
 texture = ExtResource("7_fig74")
 region_enabled = true
 region_rect = Rect2(64.104, 450.624, 26.896, 25)
 
-[node name="Cat1" type="CharacterBody2D" parent="."]
+[node name="YarnBall2" type="Node2D" parent="." unique_id=273017555 groups=["yarn"]]
+position = Vector2(402.067, 147.385)
+
+[node name="Sprite2D" type="Sprite2D" parent="YarnBall2" unique_id=1425187500]
+position = Vector2(1.93314, 1.61534)
+scale = Vector2(1.30829, 1.28)
+texture = ExtResource("7_fig74")
+region_enabled = true
+region_rect = Rect2(64.104, 450.624, 26.896, 25)
+
+[node name="Cat1" type="CharacterBody2D" parent="." unique_id=1490482549]
 process_mode = 1
 script = ExtResource("8_mxtma")
 yarn_ball_path = NodePath("../YarnBall")
 happiness_bar_path = NodePath("ProgressBar")
 animated_sprite_path = NodePath("AnimatedSprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat1" unique_id=2106403396]
 position = Vector2(-3.5, -4.5)
 shape = SubResource("RectangleShape2D_43j51")
 
-[node name="Timer" type="Timer" parent="Cat1"]
+[node name="Timer" type="Timer" parent="Cat1" unique_id=1927105746]
 wait_time = 2.0
 autostart = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Cat1"]
+[node name="ProgressBar" type="ProgressBar" parent="Cat1" unique_id=641647186]
 offset_left = -21.0
 offset_top = -71.0
 offset_right = 14.0
 offset_bottom = -44.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_8kc7v")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cat1"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cat1" unique_id=1229308457]
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("9_h0b11")
 animation = &"WalkDown"
 
-[node name="Cat4" type="CharacterBody2D" parent="."]
+[node name="Cat4" type="CharacterBody2D" parent="." unique_id=1770832801]
 process_mode = 1
 position = Vector2(-21.9544, 214.797)
 script = ExtResource("10_cjfhq")
 happiness_bar_path = NodePath("ProgressBar")
 animated_sprite_path = NodePath("AnimatedSprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat4" unique_id=1509603461]
 position = Vector2(-3.5, -4.5)
 shape = SubResource("RectangleShape2D_43j51")
 
-[node name="Timer" type="Timer" parent="Cat4"]
+[node name="Timer" type="Timer" parent="Cat4" unique_id=567735275]
 wait_time = 2.0
 autostart = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Cat4"]
+[node name="ProgressBar" type="ProgressBar" parent="Cat4" unique_id=362246832]
 offset_left = -21.0
 offset_top = -71.0
 offset_right = 14.0
 offset_bottom = -44.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_8kc7v")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cat4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cat4" unique_id=131160395]
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("9_h0b11")
 animation = &"WalkDown"
 
-[node name="Cat2" type="CharacterBody2D" parent="."]
+[node name="Cat2" type="CharacterBody2D" parent="." unique_id=1724111970]
 process_mode = 1
 position = Vector2(336.565, -48.5664)
 script = ExtResource("11_65lqi")
@@ -400,27 +410,27 @@ yarn_ball_path = NodePath("../YarnBall")
 happiness_bar_path = NodePath("ProgressBar")
 animated_sprite_path = NodePath("AnimatedSprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat2" unique_id=2107315517]
 position = Vector2(-10.2824, -4.5)
 shape = SubResource("RectangleShape2D_43j51")
 
-[node name="Timer" type="Timer" parent="Cat2"]
+[node name="Timer" type="Timer" parent="Cat2" unique_id=998309205]
 wait_time = 2.0
 autostart = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Cat2"]
+[node name="ProgressBar" type="ProgressBar" parent="Cat2" unique_id=1864561919]
 offset_left = -36.0
 offset_top = -60.0
 offset_right = 2.0
 offset_bottom = -33.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_wo8bo")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cat2"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cat2" unique_id=44536160]
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("12_h0b11")
 animation = &"RunningDown"
 
-[node name="Cat3" type="CharacterBody2D" parent="."]
+[node name="Cat3" type="CharacterBody2D" parent="." unique_id=879623867]
 process_mode = 1
 position = Vector2(-177.452, 75.1061)
 script = ExtResource("13_p2682")
@@ -428,40 +438,40 @@ table_marker_path = NodePath("../Table/Marker2D")
 happiness_bar_path = NodePath("ProgressBar")
 animated_sprite_path = NodePath("AnimatedSprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat3" unique_id=665663223]
 position = Vector2(-13.4318, -0.500671)
 shape = SubResource("RectangleShape2D_43j51")
 
-[node name="ProgressBar" type="ProgressBar" parent="Cat3"]
+[node name="ProgressBar" type="ProgressBar" parent="Cat3" unique_id=1080432993]
 offset_left = -36.4318
 offset_top = -66.5007
 offset_right = 0.568176
 offset_bottom = -39.5007
 theme_override_styles/fill = SubResource("StyleBoxFlat_0l0qi")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cat3"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cat3" unique_id=1627774941]
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("14_cjfhq")
 animation = &"RunningUp"
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=761469828]
 position = Vector2(37.3235, -293.823)
 
-[node name="CountdownLabel" type="Label" parent="Node2D"]
+[node name="CountdownLabel" type="Label" parent="Node2D" unique_id=1372927509]
 offset_left = -74.3452
 offset_top = -23.1716
 offset_right = 73.6548
 offset_bottom = 28.8284
 theme_override_font_sizes/font_size = 50
 
-[node name="Timer" type="Timer" parent="Node2D"]
+[node name="Timer" type="Timer" parent="Node2D" unique_id=2142833529]
 wait_time = 30.0
 one_shot = true
 autostart = true
 
-[node name="Node2D2" type="Node2D" parent="."]
+[node name="Node2D2" type="Node2D" parent="." unique_id=1158938998]
 
-[node name="CompletionLabel" type="Label" parent="Node2D2"]
+[node name="CompletionLabel" type="Label" parent="Node2D2" unique_id=1444221013]
 offset_left = -360.0
 offset_top = -242.0
 offset_right = 218.0
