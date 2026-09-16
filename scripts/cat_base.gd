@@ -41,7 +41,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _change_state(new_state: State) -> void:
-	print(name, " changing state to: ", State.keys()[new_state], " at time: ", Time.get_ticks_msec())
 	state = new_state
 
 func _process_wander(delta: float) -> void:
@@ -94,6 +93,22 @@ var low_happiness_timer: float = 0.0
 func _on_timer_timeout() -> void:
 	var random_offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))
 	wander_target = global_position + random_offset
+
+# Finds the closest node in the "yarn" group to this cat, or null if
+# no yarn balls currently exist in the scene. Any cat can call this
+# instead of relying on one fixed, pre-wired reference.
+func _get_nearest_yarn_ball() -> Node2D:
+	var balls = get_tree().get_nodes_in_group("yarn")
+	if balls.is_empty():
+		return null
+	var nearest: Node2D = balls[0]
+	var nearest_distance = global_position.distance_to(nearest.global_position)
+	for ball in balls:
+		var distance = global_position.distance_to(ball.global_position)
+		if distance < nearest_distance:
+			nearest_distance = distance
+			nearest = ball
+	return nearest
 
 func _check_happiness_events(delta: float) -> void:
 	if happiness >= PURR_THRESHOLD and not has_purred:
